@@ -1,15 +1,24 @@
+/* Coolors Exported Palette - coolors.co/171219-225560-edf060-f0803c-310d20 */
+
+/* HSL */
+
+
 $colors: (
-  'brand-blue'   : hsl(195, 100%, 43%),
-  'brand-red'  : hsl(0, 100%, 50%),
-  'brand-orange' : hsl(330, 100%, 45%),
-  'background'   : #000000,
-  'text'         : #ffffff,
-  'action'       : 'brand-red',
+  'Licorice'     : hsla(283%, 16%, 8%, 1),
+  'SlateGray'    : hsla(191%, 48%, 25%, 1),
+  'Maize'        : hsla(61%, 83%, 66%, 1),
+  'Mandarin'     : hsla(23%, 86%, 59%, 1),
+  'DarkSienna'   : hsla(328%, 58%, 12%, 1),
+  'primary'      : 'Mandarin',
+  'secondary'    : 'SlateGray',
+  'background'   : 'Licorice',
+  'text'         : 'light',
+  'action'       : 'Maderin',
   'focus'        : 'brand-orange',
-  'link'         : 'brand-blue',
-  'hover'        : 'brand-orange',
-  'light'        : gray,
-  'dark'         : #000000,
+  'link'         : 'Maize',
+  'hover'        : 'DarkSienna',
+  'light'        : 'Maize',
+  'dark'         : 'Licorice',
 
   'body-bg'             : 'background',
   'body-color'          : 'text',
@@ -27,12 +36,15 @@ $colors: (
   'border-color'        : 'border',
   'shadow-color'        : 'dark',
 
-  'button-color'        : 'light',
-  'button-bg'           : 'brand-blue',
+  'button-color'        : 'dark',
+  'button-bg'           : 'primary',
   'button-border'       : 'border',
-  'button-hover-bg'     : 'link',
-  'button-hover-color'  : 'hover',
+  'button-hover-bg'     : 'hover',
+  'button-hover-color'  : 'light',
   'button-hover-border' : 'border',
+
+  'input-bg'            : 'dark',
+  'input-color'         : 'light',
 
   'cta-button-bg'       : 'link',
   'cta-button-color'    : 'light',

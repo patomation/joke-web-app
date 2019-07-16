@@ -1,0 +1,11 @@
+.o-button{
+  background-color: color('button-bg');
+  border: none;
+  color: color('button-color');
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.o-button:hover{
+  background-color: color('button-hover-bg');
+  color: color('button-hover-color');
+}

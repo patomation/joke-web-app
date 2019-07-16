@@ -6,7 +6,6 @@
   $value: null;
   $loop: true;
   @while $loop == true {
-    // @debug map-get($colors2, $key);
     $value: map-get($map, $key);
     //Stop if null
     @if $value == null {
@@ -16,7 +15,6 @@
     @if type_of($value) == 'color' {
       $loop: false;
     }
-    @debug $value;
     // Set key as last value if we loop check this value if it is a key
     $key: $value;
   }
