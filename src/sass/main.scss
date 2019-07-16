@@ -1,1 +1,27 @@
+// ##################################
+// ### ITCSS - Invertied Triangle ###
+// ##################################
 
+// SETTINGS - fonts, colors, definitions
+@import '1_settings/all';
+
+// TOOLS - globaly used mixins and functions
+@import '2_tools/all';
+
+// GENERIC - reset /normalizing styles, box sizing, first layer that generates css
+@import '3_generic/all';
+
+// ELEMENTS - Bare html elements h1,A, p ect
+@import '4_elements/all';
+
+// OBJECTS - Class based selectors - undecorated design patterns
+@import '5_objects/all';
+
+// COMPONENTS - Specific UI components - composed of objects and compoentns
+@import '6_components/all';
+
+// UTILITIES - Overrides
+@import '7_utilities/all';
+
+
+//

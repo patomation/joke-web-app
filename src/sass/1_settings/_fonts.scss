@@ -1,0 +1,16 @@
+$fonts: (
+  // hosted web font
+  'body': (
+    'name': 'CenturyOldStyle',
+    'stack': ('Baskerville', 'Palatino', 'Cambria', 'Georgia', 'serif'),
+    'regular': 'CenturyOldStyle-regular', // webfont file names...
+    'italic': 'CenturyOldStyle-italic',
+    'bold': 'CenturyOldStyle-bold',
+  ),
+
+  // web-safe font stack
+  'code': (
+    'name': 'Consolas',
+    'stack': ('Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', 'monospace', 'serif')
+  ),
+);

@@ -1,0 +1,32 @@
+// A way to get maps that refference other keys as values
+// Example you have a key background with its value primary.
+// since this is not a color it check if this key exists and uses that value.
+// Or it returns null if key doesn't exist
+@function linked-map-get($map, $key) {
+  $value: null;
+  $loop: true;
+  @while $loop == true {
+    // @debug map-get($colors2, $key);
+    $value: map-get($map, $key);
+    //Stop if null
+    @if $value == null {
+      $loop: false;
+    }
+    //Stop if color
+    @if type_of($value) == 'color' {
+      $loop: false;
+    }
+    @debug $value;
+    // Set key as last value if we loop check this value if it is a key
+    $key: $value;
+  }
+  @return $value;
+}
+
+@function color($key){
+  $value: linked-map-get($colors, $key);
+  @if $value == null {
+    $value: red;
+  }
+  @return $value;
+}
