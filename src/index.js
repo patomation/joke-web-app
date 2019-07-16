@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import App from "./App.js";
+
 import style from "./sass/main.scss";
 
 const Index = () => {
   return (
     <div>
-      When Chuck Norris does a pushup he is infact pushing the earth away from him.
+      <App />
     </div>
   );
 };
