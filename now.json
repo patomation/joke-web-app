@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "jokes",
+  "builds": [
+    {"src": "/api/index.js", "use": "@now/node"},
+    {"src": "/dist/**", "use": "@now/static"}
+  ],
+  "routes": [
+    {"src": "/graphql", "dest": "/api/index.js"},
+    {"src": "/(.*)", "dest": "/dist/$1"}
+  ],
+  "env":{
+    "MONGODB_URL":"mongodb+srv://[user]:[pw]@[cluster].mongodb.net/test?retryWrites=true"
+  }
+
+}
