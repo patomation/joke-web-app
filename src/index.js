@@ -1,16 +1,30 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware  } from 'redux';
+import { createLogger } from 'redux-logger';
+
+import thunkMiddleware from 'redux-thunk';
+const loggerMiddleware = createLogger();
 
 import App from "./App.js";
 
 import style from "./sass/main.scss";
 
-const Index = () => {
-  return (
-    <div>
-      <App />
-    </div>
-  );
-};
+import rootReducer from './reducers';
 
-ReactDOM.render(<Index />, document.getElementById("index"));
+let store = createStore(
+  rootReducer,
+  applyMiddleware(
+    thunkMiddleware, // Enables dispatch() functions
+    loggerMiddleware // logs actions
+  )
+);
+
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
