@@ -1,5 +1,3 @@
-import apiIntegration from '../modules/apiIntegration';
-
 export const GET_JOKE = 'GET_JOKE';
 export function gettingJoke(){
   return {

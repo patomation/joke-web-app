@@ -1,5 +1,3 @@
-import apiIntegration from '../modules/apiIntegration';
-
 export const POSTING_JOKE = 'POSTING_JOKE';
 export function postingJoke(content){
   return {

@@ -1,4 +1,3 @@
-import apiIntegration from '../modules/apiIntegration';
 import { getJokes } from './getJokes.js';
 
 export const DELETE_JOKE = 'DELETE_JOKE';
