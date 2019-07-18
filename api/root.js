@@ -26,7 +26,6 @@ const root = {
   createJoke: function ({input}) {
     // Create a random id for our "database".
     var id = require('crypto').randomBytes(10).toString('hex');
-    console.log('CREATE JOKE', input);
     fakeDatabase[id] = input;
     return new Joke(id, input);
   },
@@ -34,15 +33,13 @@ const root = {
     if (!fakeDatabase[id]) {
       throw new Error('no joke exists with id ' + id);
     }
-    // This replaces all old data, but some apps might want partial update.
-    fakeDatabase[id] = input;
+    fakeDatabase[id].content = input.content;
     return new Joke(id, input);
   },
   likeJoke: function ({id}) {
     if (!fakeDatabase[id]) {
       throw new Error('no joke exists with id ' + id);
     }
-    console.log('fakeDatabase[id]',fakeDatabase[id]);
     fakeDatabase[id].likes += 1;
     return new Joke(id, fakeDatabase[id]);
   },
@@ -57,9 +54,7 @@ const root = {
     if (!fakeDatabase[id]) {
       throw new Error('no joke exists with id ' + id);
     }
-    console.log(fakeDatabase);
     delete fakeDatabase[id]
-    console.log(fakeDatabase);
     return new Message(`Deleted Joke: ${id}`);
   }
 
