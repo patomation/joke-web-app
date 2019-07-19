@@ -17,10 +17,11 @@ export default connect( (state) => {
 })(class JokeViewer extends React.Component {
   constructor() {
     super();
+    this.dispatch = null;
   }
 
   componentDidMount(){
-    this.store.dispatch(getJokes(10));
+    this.dispatch(getJokes(10));
   }
   _getListItems(){
     let listItems = [];
@@ -32,14 +33,14 @@ export default connect( (state) => {
             <button
               className="o-button"
               onClick={((id)=>{
-                this.store.dispatch(likeJoke(id))
+                this.dispatch(likeJoke(id))
               }).bind(this, this.props.jokes[i].id)}>
                 {this.props.jokes[i].likes} likes
             </button>
             <button
               className="o-button"
               onClick={((id)=>{
-                this.store.dispatch(dislikeJoke(id))
+                this.dispatch(dislikeJoke(id))
               }).bind(this, this.props.jokes[i].id)}>
                 {this.props.jokes[i].dislikes} dislikes
             </button>
@@ -53,14 +54,14 @@ export default connect( (state) => {
             <button
               className="o-button"
               onClick={((id)=>{
-                this.store.dispatch(deleteJoke(id))
+                this.dispatch(deleteJoke(id))
               }).bind(this, this.props.jokes[i].id)}>
                 delete
             </button>
             <button
               className="o-button"
               onClick={((id, content)=>{
-                this.store.dispatch(editJoke(id, content))
+                this.dispatch(editJoke(id, content))
               }).bind(this,
                 this.props.jokes[i].id,
                 this.props.jokes[i].content )}>
@@ -78,7 +79,8 @@ export default connect( (state) => {
     return (
       <ReactReduxContext.Consumer>
         {({ store }) => {
-          this.store = store;
+          //Pass dispatch into this object
+          this.dispatch = store.dispatch;
 
           return (
             <section className="c-joke-viewer container">

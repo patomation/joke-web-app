@@ -2,28 +2,31 @@ import React from "react";
 import jokeApi from './jokeApi.js';
 import {ReactReduxContext, connect } from 'react-redux'
 
-export default class ChuckNorris extends React.Component {
+export default connect( (state) => {
+  return {
+    firstName: state.firstName,
+    lastName: state.lastName,
+    results: state.results
+   }
+})(class ChuckNorris extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      firstName: 'Chuck',
-      lastName: 'Norris',
-      results: 10,
-      random: true,
       selected: null,
       jokes: [],
     };
+    this.dispatch = null;
   }
 
   componentDidMount(){}
 
   _getJokes(){
     jokeApi.get({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+      firstName: this.props.firstName,
+      lastName: this.props.lastName,
       exclude: '[explicit]',
-      results: this.state.results
+      results: this.props.results
     },(jokes) => {
 
       this.setState({
@@ -34,8 +37,9 @@ export default class ChuckNorris extends React.Component {
   }
 
   _selected(id){
+    //local UI show selected
     this.setState({selected :id});
-    this.props.selected(id, this.state.jokes[id]);
+
   }
 
   _renderList(){
@@ -50,7 +54,22 @@ export default class ChuckNorris extends React.Component {
             {this.state.jokes[i].joke}
           </div>
           <div className="col-2">
-            <button className="o-button" onClick={this._selected.bind(this,i)}>Use This Joke</button>
+            <button
+              className="o-button"
+              onClick={((id,joke) => {
+                this._selected(id)
+                //Add this joke to editor
+                this.dispatch({
+                  type:"CONTENT_CHANGE",
+                  content: joke });
+                //Chnage to editor view
+                this.dispatch({
+                  type:"CHANGE_VIEW",
+                  view:"Editor"});
+
+              }).bind(this, i, this.state.jokes[i].joke)}>
+                Use This Joke
+              </button>
           </div>
         </li>
       );
@@ -66,22 +85,52 @@ export default class ChuckNorris extends React.Component {
 
     return(
       <ReactReduxContext.Consumer>
-        {({ store }) =>
-        <section className="c-app container">
-            <header className="c-header  row">
-              <h1 className="o-h1"> {this.state.firstName} {this.state.lastName} Joke Generator</h1>
+        {({ store }) => {
+        //Pass dispatch into this object
+        this.dispatch = store.dispatch;
 
-              <input className="o-input col-5" onChange={(e)=>{this.setState({firstName:e.target.value})}} value={this.state.firstName || ''}></input>
-              <input className="o-input col-5" onChange={(e)=>{this.setState({lastName:e.target.value})}} value={this.state.lastName || ''}></input>
-              <input className="o-input col-2" onChange={(e)=>{this.setState({results:e.target.value})}} value={this.state.results || 0} type='number'></input>
-              <button className="o-button col-12" onClick={this._getJokes.bind(this)}>Get Jokes</button>
-            </header>
-            <main className="o-main">
-              { this._renderList() }
-            </main>
-        </section>
-      }
+        return (
+          <section className="c-app container">
+              <header className="c-header  row">
+                <h1 className="o-h1"> {this.props.firstName} {this.props.lastName} Joke Generator</h1>
+
+                <input
+                  className="o-input col-5"
+                  onChange={(e)=>{
+                    store.dispatch({
+                      type: 'FIRST_NAME_CHANGE',
+                      content: e.target.value })
+                  }}
+                  value={this.props.firstName || ''}></input>
+
+                <input
+                  className="o-input col-5"
+                  onChange={(e)=>{
+                    store.dispatch({
+                      type: 'LAST_NAME_CHANGE',
+                      content: e.target.value })
+                  }}
+                  value={this.props.lastName || ''}></input>
+
+                <input
+                  className="o-input col-2"
+                  onChange={(e)=>{
+                    store.dispatch({
+                      type: 'RESULTS_CHANGE',
+                      results: e.target.value })
+                  }}
+                  value={this.props.results || 0}
+                  type='number'></input>
+
+                <button className="o-button col-12" onClick={this._getJokes.bind(this)}>Get Jokes</button>
+              </header>
+              <main className="o-main">
+                { this._renderList() }
+              </main>
+          </section>
+        );
+      }}
       </ReactReduxContext.Consumer>
     )
   }
-}
+});
