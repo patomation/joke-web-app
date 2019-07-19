@@ -22,7 +22,7 @@ export default class App extends React.Component {
           <Nav/>
 
           <View
-            Generate={
+            Generator={
               <ChuckNorris />
             }
             Editor={<Editor />}
