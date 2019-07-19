@@ -1,61 +1,79 @@
-const Joke = require('./classes/Joke.js');
-const Jokes = require('./classes/Jokes.js');
-const Message = require('./classes/Message.js');
-
-
-//TODO: Use mongodb
-var fakeDatabase = {};
+const Joke = require('./models/Joke.js');
 
 const root = {
   getJoke: function ({id}) {
-    if (!fakeDatabase[id]) {
-      throw new Error('no joke exists with id ' + id);
-    }
-    return new Joke(id, fakeDatabase[id]);
+    return Joke.find({_id:id})
+      .then( joke => {
+        return joke[0];
+      }).catch( err => {
+        throw err;
+      });
   },
   getJokes: function ({results}) {
-    if (Object.keys(fakeDatabase).length === 0) {
-      throw new Error('no jokes exists yet');
-    }
-    let jokes = []
-    for (var id in fakeDatabase) {
-      jokes.push( new Joke(id, fakeDatabase[id]) );
-    }
-    return {jokes: jokes};
+    return Joke.find()
+      .then( jokes =>{
+        return {
+          jokes: jokes.map(result => {
+            return {...result._doc};
+          })}
+
+      }).catch(err => {
+        throw err;
+      });
   },
   createJoke: function ({input}) {
-    // Create a random id for our "database".
-    var id = require('crypto').randomBytes(10).toString('hex');
-    fakeDatabase[id] = input;
-    return new Joke(id, input);
+    const joke = new Joke({
+      content: input.content,
+      likes: 0,
+      dislikes: 0
+    })
+    //use db created id
+    joke.id = joke._id;
+
+    return joke.save()
+      .then( result => {
+        return {...result._doc};
+      }).catch( err => {
+        throw err;
+      });
   },
   updateJoke: function ({id, input}) {
-    if (!fakeDatabase[id]) {
-      throw new Error('no joke exists with id ' + id);
-    }
-    fakeDatabase[id].content = input.content;
-    return new Joke(id, input);
+    return Joke.findOneAndUpdate({_id:id},{
+        content: input.content
+      })
+      .then( result => {
+        return result;
+      }).catch( err => {
+        throw err;
+      });
   },
   likeJoke: function ({id}) {
-    if (!fakeDatabase[id]) {
-      throw new Error('no joke exists with id ' + id);
-    }
-    fakeDatabase[id].likes += 1;
-    return new Joke(id, fakeDatabase[id]);
+    return Joke.findOneAndUpdate({_id:id},{
+        $inc: { likes: 1 }
+      })
+      .then( result => {
+        return result;
+      }).catch( err => {
+        throw err;
+      });
   },
   dislikeJoke: function ({id}) {
-    if (!fakeDatabase[id]) {
-      throw new Error('no joke exists with id ' + id);
-    }
-    fakeDatabase[id].dislikes += 1;
-    return new Joke(id, fakeDatabase[id]);
+    return Joke.findOneAndUpdate({_id:id},{
+        $inc: { dislikes: 1 }
+      })
+      .then( result => {
+        return result;
+      }).catch( err => {
+        throw err;
+      });
   },
   deleteJoke: function ({id}) {
-    if (!fakeDatabase[id]) {
-      throw new Error('no joke exists with id ' + id);
-    }
-    delete fakeDatabase[id]
-    return new Message(`Deleted Joke: ${id}`);
+    return Joke.findOneAndDelete({_id:id})
+      .then( result => {
+        return result;
+      }).catch( err => {
+        throw err;
+      });
   }
 
 };
