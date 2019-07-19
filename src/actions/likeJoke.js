@@ -1,4 +1,5 @@
 import { getJokes } from './getJokes.js';
+import apiHost from '../apiHost.js';
 
 export const LIKING_JOKE = 'LIKING_JOKE';
 export function likingJoke(){
@@ -19,7 +20,7 @@ export function likingJokeSuccess(data){
 export function likeJoke(id){
   return dispatch => {
     dispatch(likingJoke());
-    fetch( 'http://localhost:4000/api', {
+    fetch( apiHost, {
       mode: 'cors',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -1,3 +1,5 @@
+import apiHost from '../apiHost.js';
+
 export const UPDATING_JOKE = 'UPDATING_JOKE';
 export function updatingJoke(){
   return {
@@ -18,7 +20,7 @@ export function updateJoke(id, content){
   return dispatch => {
     dispatch(updatingJoke());
 
-    fetch( 'http://localhost:4000/api', {
+    fetch( apiHost, {
       mode: 'cors',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

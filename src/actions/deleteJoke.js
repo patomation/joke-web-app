@@ -1,4 +1,5 @@
 import { getJokes } from './getJokes.js';
+import apiHost from '../apiHost.js';
 
 export const DELETE_JOKE = 'DELETE_JOKE';
 export function deletingJoke(){
@@ -18,7 +19,7 @@ export function deleteJokeSuccess(data){
 export function deleteJoke(id){
   return dispatch => {
     dispatch(deletingJoke());
-    fetch( 'http://localhost:4000/api', {
+    fetch( apiHost, {
       mode: 'cors',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
