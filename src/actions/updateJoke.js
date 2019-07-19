@@ -17,6 +17,7 @@ export function updatingJokeSuccess(data){
 export function updateJoke(id, content){
   return dispatch => {
     dispatch(updatingJoke());
+
     fetch( 'http://localhost:4000/api', {
       mode: 'cors',
       method: 'POST',
@@ -36,6 +37,9 @@ export function updateJoke(id, content){
     .then(response=>response.json())
     .then(data=>{
       dispatch(updatingJokeSuccess(data));
+      //Reset editId to null and content to ""
+      dispatch({type:"EDIT_ID_CHANGE", id:null})
+      dispatch({type:"CONTENT_CHANGE", content:''})
     })
     .catch( (err) => {
       console.warn('error', err);
