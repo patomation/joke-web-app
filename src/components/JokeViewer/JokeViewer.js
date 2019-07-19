@@ -29,44 +29,72 @@ export default connect( (state) => {
 
       listItems.push(
         <li className="o-list-item row" key={this.props.jokes[i].id}>
-          <div className="col-2">
-            <button
-              className="o-button"
-              onClick={((id)=>{
-                this.dispatch(likeJoke(id))
-              }).bind(this, this.props.jokes[i].id)}>
-                {this.props.jokes[i].likes} likes
-            </button>
-            <button
-              className="o-button"
-              onClick={((id)=>{
-                this.dispatch(dislikeJoke(id))
-              }).bind(this, this.props.jokes[i].id)}>
-                {this.props.jokes[i].dislikes} dislikes
-            </button>
+
+          <div className="col-12 col-sm-10 d-block d-sm-none d-md-none d-lg-none d-xl-none">
+            <div className="row">
+              <div className="col-1 c-likes-plus-dislikes" >
+                <i className="o-material-icon">favorite</i>{this.props.jokes[i].likes - this.props.jokes[i].dislikes}
+              </div>
+              <div className="col-11">
+                <p>
+                  {this.props.jokes[i].content}
+                </p>
+              </div>
+            </div>
           </div>
 
-          <p className="col-8">
-            {this.props.jokes[i].content}
-          </p>
+          <div className="col-6 col-sm-1">
+            <div className=" o-vertical-align">
+              <button
+                className="o-button col-6 col-sm-12"
+                onClick={((id)=>{
+                  this.dispatch(likeJoke(id))
+                }).bind(this, this.props.jokes[i].id)}>
+                  <i className="o-material-icon">thumb_up</i>
+              </button>
+              <button
+                className="o-button col-6 col-sm-12"
+                onClick={((id)=>{
+                  this.dispatch(dislikeJoke(id))
+                }).bind(this, this.props.jokes[i].id)}>
+                  <i className="o-material-icon">thumb_down</i>
+              </button>
+            </div>
+          </div>
 
-          <div className="col-2">
-            <button
-              className="o-button"
-              onClick={((id)=>{
-                this.dispatch(deleteJoke(id))
-              }).bind(this, this.props.jokes[i].id)}>
-                delete
-            </button>
-            <button
-              className="o-button"
-              onClick={((id, content)=>{
-                this.dispatch(editJoke(id, content))
-              }).bind(this,
-                this.props.jokes[i].id,
-                this.props.jokes[i].content )}>
-                  edit
-            </button>
+          <div className="col-12 col-sm-10 d-none d-sm-block d-md-block d-lg-block d-kl-block">
+            <div className="o-content">
+              <div className="col-12 c-likes-plus-dislikes" >
+                <i className="o-material-icon">favorite</i>
+                {this.props.jokes[i].likes - this.props.jokes[i].dislikes}
+              </div>
+              <div className="col-12">
+                <p>
+                  {this.props.jokes[i].content}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-6 col-sm-1">
+            <div className=" o-vertical-align">
+              <button
+                className="o-button col-6 col-sm-12"
+                onClick={((id)=>{
+                  this.dispatch(deleteJoke(id))
+                }).bind(this, this.props.jokes[i].id)}>
+                  <i className="o-material-icon">delete</i>
+              </button>
+              <button
+                className="o-button col-6 col-sm-12"
+                onClick={((id, content)=>{
+                  this.dispatch(editJoke(id, content))
+                }).bind(this,
+                  this.props.jokes[i].id,
+                  this.props.jokes[i].content )}>
+                    <i className="o-material-icon">edit</i>
+              </button>
+            </div>
           </div>
         </li>
       );

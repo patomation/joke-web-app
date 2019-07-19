@@ -50,12 +50,14 @@ export default connect( (state) => {
 
       listItems.push(
         <li className={`o-list-item row ${selected}`} key={`joke-${i}`}>
-          <div className="col-10">
-            {this.state.jokes[i].joke}
+          <div className="col-11">
+            <p>
+              {this.state.jokes[i].joke}
+            </p>
           </div>
-          <div className="col-2">
+          <div className="col-1">
             <button
-              className="o-button"
+              className="o-button o-vertical-align"
               onClick={((id,joke) => {
                 this._selected(id)
                 //Add this joke to editor
@@ -68,7 +70,7 @@ export default connect( (state) => {
                   view:"Editor"});
 
               }).bind(this, i, this.state.jokes[i].joke)}>
-                Use This Joke
+                <i className="o-material-icon">edit</i>
               </button>
           </div>
         </li>
@@ -90,7 +92,7 @@ export default connect( (state) => {
         this.dispatch = store.dispatch;
 
         return (
-          <section className="c-app container">
+          <section className="c-chuck-norris container">
               <header className="c-header  row">
                 <h1 className="o-h1"> {this.props.firstName} {this.props.lastName} Joke Generator</h1>
 

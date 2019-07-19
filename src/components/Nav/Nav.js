@@ -18,27 +18,30 @@ export default connect( (state) => {
     return(
       <ReactReduxContext.Consumer>
         {({ store }) =>
-          <nav className="row">
+          <nav className="c-nav row">
             <button
               className="o-button col-4"
               onClick={()=>{store.dispatch({
                 type: 'CHANGE_VIEW',
                 view: 'JokeViewer' })}}>
-                Jokes
+                <div><i className="o-material-icon">visibility</i></div>
+                <div>Jokes</div>
             </button>
             <button
               className="o-button col-4"
               onClick={()=>{store.dispatch({
                 type: 'CHANGE_VIEW',
                 view: 'Editor' })}}>
-                Editor
+                <div><i className="o-material-icon">insert_comment</i></div>
+                <div>Editor</div>
             </button>
             <button
               className="o-button col-4"
               onClick={()=>{store.dispatch({
                 type: 'CHANGE_VIEW',
-                view: 'Generate' })}}>
-                Generate
+                view: 'Generator' })}}>
+                <div><i className="o-material-icon">loop</i></div>
+                <div>Generator</div>
             </button>
           </nav>
         }

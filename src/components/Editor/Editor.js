@@ -40,7 +40,9 @@ export default connect( (state) => {
                     store.dispatch(postJoke( store.getState().content ));
                   }
                   store.dispatch({type:'CHANGE_VIEW',view:'JokeViewer'})
-                }}>Submit</button>
+                }}>
+                  <i className="o-material-icon">cloud_upload</i>
+                </button>
             </section>
           }
         </ReactReduxContext.Consumer>
