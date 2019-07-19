@@ -8,7 +8,7 @@ module.exports = {
   entry: ['./src/index.js'],
   output: {
     path: __dirname + '/dist',
-    filename: 'main.js' 
+    filename: 'main.js'
   },
   module: {
     rules: [
@@ -36,6 +36,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
+      }
     ]
   },
   plugins: [htmlPlugin]

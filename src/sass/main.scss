@@ -23,5 +23,5 @@
 // UTILITIES - Overrides
 @import '7_utilities/all';
 
-
-//
+$material-icons-font-path: '~material-icons/iconfont/';
+@import '~material-icons/iconfont/material-icons.scss';
