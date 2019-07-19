@@ -35,6 +35,9 @@ export function postJoke(content){
     .then(response=>response.json())
     .then(data=>{
       dispatch(postingJokeSuccess(data));
+      //Reset editId to null and content to ""
+      dispatch({type:"EDIT_ID_CHANGE", id:null})
+      dispatch({type:"CONTENT_CHANGE", content:''})
     })
     .catch( (err) => {
       console.warn('error', err);
