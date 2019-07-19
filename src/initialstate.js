@@ -1,5 +1,5 @@
 const initialstate = {
-  view: 'Generate',
+  view: 'JokeViewer', //Editor, JokeViewer, Generator
   jokes: [],
   firstName: 'Chuck',
   lastName: 'Norris',
