@@ -43,7 +43,7 @@ export default connect( (state) => {
               </header>
               <ul className="o-list">
                 {this._showLoader()}
-                {this.props.jokes.map( joke => {
+                {this.props.jokes.slice(0).reverse().map( joke => {
                   return (
                     <JokeListItem
                       key={joke.id}
