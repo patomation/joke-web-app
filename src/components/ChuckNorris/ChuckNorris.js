@@ -94,7 +94,7 @@ export default connect( (state) => {
         return (
           <section className="c-chuck-norris container">
               <header className="c-header  row">
-                <h1 className=""> {this.props.firstName} {this.props.lastName} Joke Generator</h1>
+                <h1 className="col-12"> {this.props.firstName} {this.props.lastName} Joke Generator</h1>
 
                 <div className="col-5">
                 <input
