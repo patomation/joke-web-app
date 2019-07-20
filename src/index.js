@@ -17,7 +17,7 @@ let store = createStore(
   rootReducer,
   applyMiddleware(
     thunkMiddleware, // Enables dispatch() functions
-    loggerMiddleware // logs actions
+    // loggerMiddleware // logs actions
   )
 );
 

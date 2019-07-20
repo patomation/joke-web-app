@@ -10,8 +10,7 @@ import {
 
 export default connect( (state) => {
   return {
-    jokes: state.jokes,
-    authkey: state.authkey
+    jokes: state.jokes
    }
 })(class JokeViewer extends React.Component {
   constructor() {

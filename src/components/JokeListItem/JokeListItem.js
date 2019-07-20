@@ -13,7 +13,9 @@ import {
 
 //Connect redux state to props
 export default connect( (state) => {
-  return {}
+  return {
+    authkey: state.authkey
+  }
 })(class JokeListItem extends React.Component {
   constructor(props) {
     super(props);

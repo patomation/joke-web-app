@@ -45,7 +45,6 @@ const root = {
   login: function ({email, password}){
     return User.findOne({email:email})
       .then( result => {
-        console.log('result', result);
         if ( result === null ) {
           return {
             error: true,
@@ -177,7 +176,6 @@ const root = {
   dislikeJoke: function ({id, authkey}) {
     return User.findOneAndUpdate({authkey:authkey})
       .then( user => {
-
           return Joke.findOneAndUpdate({_id:id},{
               $inc: {
                 dislikes: (user.dislikes.includes(id) ? 0 : 1),
