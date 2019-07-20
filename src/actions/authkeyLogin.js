@@ -42,6 +42,7 @@ export function authkeyLogin(authkey){
         return result.data.authkeyLogin;
       } else {
         dispatch({type: 'ERROR_MESSAGE', message: result.data.authkeyLogin.message});
+        dispatch({type: 'CHANGE_VIEW', view: 'Login'});
         return result.data.authkeyLogin;
       }
     })

@@ -49,7 +49,7 @@ const root = {
         if ( result === null ) {
           return {
             error: true,
-            authkey: '',
+            authkey: require('crypto').randomBytes(10).toString('hex'),
             message: 'User Not Found'
           }
         } else if (password === result.password) {
@@ -73,12 +73,11 @@ const root = {
   authkeyLogin: function ({authkey}){
     return User.findOne({authkey:authkey})
       .then( result => {
-        console.log('result',result);
         if ( result === null ) {
           return {
             error: true,
             authkey: '',
-            message: 'User Not Found'
+            message: 'Bad Auth Key'
           }
         } else {
           return {
