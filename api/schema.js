@@ -12,6 +12,7 @@ const schema = buildSchema(`
     error: Boolean
     message: String
     authkey: String
+    userName: String
   }
 
   type Result {

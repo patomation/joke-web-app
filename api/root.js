@@ -3,11 +3,11 @@ const User = require('./models/User.js');
 
 const root = {
   register: function ({email,password,lastName,firstName}) {
-    return User.find({email:email})
-      .then( results => {
+    return User.findOne({email:email})
+      .then( result => {
 
         //User does not exist Create new user
-        if(results.length === 0){
+        if(result === null){
           const user = new User({
             firstName: firstName,
             lastName: lastName,
@@ -18,11 +18,12 @@ const root = {
           });
 
           return user.save()
-            .then( result => {
+            .then( newUser => {
               return {
                 error: false,
-                authkey: result.authkey,
-                message: 'Registration Successful'
+                authkey: newUser.authkey,
+                message: 'Registration Successful',
+                userName: newUser.firstName
               }
             }).catch( err => {
               throw err;
@@ -42,19 +43,21 @@ const root = {
 
   },
   login: function ({email, password}){
-    return User.find({email:email})
-      .then( results => {
-        if ( results.length === 0 ) {
+    return User.findOne({email:email})
+      .then( result => {
+        console.log('result', result);
+        if ( result === null ) {
           return {
             error: true,
             authkey: '',
             message: 'User Not Found'
           }
-        } else if (password === results[0].password) {
+        } else if (password === result.password) {
           return {
             error: false,
-            authkey: results[0].authkey,
-            message: 'Log in Successful'
+            authkey: result.authkey,
+            message: 'Log in Successful',
+            userName: result.firstName
           }
         } else {
           return {
@@ -68,9 +71,10 @@ const root = {
       });
   },
   authkeyLogin: function ({authkey}){
-    return User.find({authkey:authkey})
-      .then( results => {
-        if ( results.length === 0 ) {
+    return User.findOne({authkey:authkey})
+      .then( result => {
+        console.log('result',result);
+        if ( result === null ) {
           return {
             error: true,
             authkey: '',
@@ -79,8 +83,9 @@ const root = {
         } else {
           return {
             error: false,
-            authkey: results[0].authkey,
-            message: 'Log in Successful'
+            authkey: result.authkey,
+            message: 'Log in Successful',
+            userName: result.firstName
           }
         }
       }).catch( err=>{
@@ -88,9 +93,9 @@ const root = {
       });
   },
   getJoke: function ({id}) {
-    return Joke.find({_id:id})
+    return Joke.findOne({_id:id})
       .then( joke => {
-        return joke[0];
+        return joke;
       }).catch( err => {
         throw err;
       });
@@ -191,7 +196,7 @@ const root = {
               //Save db user
               return user.save()
                 .then( result => {
-``                  return {
+                    return {
                     success: true
                   }
                 }).catch( err => {
