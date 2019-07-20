@@ -11,7 +11,8 @@
     "local-server": "node ./local.server.js",
     "webpack-server": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "publish": "npm run build && now -e MONGODB_URL=@mongodb_url_jokes && node open.public.js"
+    "now-deploy": "now -e MONGODB_URL=@mongodb_url_jokes",
+    "publish": "npm run build && npm run now-deploy && node open.public.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -38,7 +39,7 @@
     "material-icons": "^0.3.1",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
-    "now": "^15.8.3",
+    "now-cli": "0.0.0",
     "opn": "^6.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
