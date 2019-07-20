@@ -21,6 +21,17 @@ let store = createStore(
   )
 );
 
+import {
+  authkeyLogin
+} from './actions/';
+
+//Auto login
+let authkey = localStorage.getItem('authkey');
+if(authkey !== null ){
+  store.dispatch(authkeyLogin(authkey))
+} else {
+  store.dispatch({type: 'CHANGE_VIEW', view: 'Register'})
+}
 
 render(
   <Provider store={store}>

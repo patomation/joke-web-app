@@ -9,37 +9,35 @@ export function likingJoke(){
 }
 
 export const LIKING_JOKE_SUCCESS = 'LIKING_JOKE_SUCCESS';
-export function likingJokeSuccess(data){
+export function likingJokeSuccess(){
   return {
-    type: LIKING_JOKE_SUCCESS,
-    id: data.id,
-    content: data.content
+    type: LIKING_JOKE_SUCCESS
   }
 }
 
-export function likeJoke(id){
+export function likeJoke( id, authkey ){
   return dispatch => {
     dispatch(likingJoke());
-    fetch( apiHost, {
+    return fetch( apiHost, {
       mode: 'cors',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         query:
         `mutation {
-          likeJoke( id: "${id}"
+          likeJoke( id: "${id}", authkey: "${authkey}"
           ){
-              id
-              likes
-              dislikes
+              success
           }
         }`
       }),
     })
     .then(response=>response.json())
-    .then(data=>{
-      dispatch(likingJokeSuccess(data));
-      dispatch(getJokes());
+    .then(result=>{
+      if(result.data.likeJoke.success === true ){
+        dispatch(likingJokeSuccess());
+        dispatch(getJokes());
+      }
     })
     .catch( (err) => {
       console.warn('error', err);

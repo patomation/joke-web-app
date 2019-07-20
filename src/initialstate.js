@@ -1,5 +1,9 @@
 const initialstate = {
-  view: 'JokeViewer', //Editor, JokeViewer, Generator
+  view: 'Loader', //Login, Register, Editor, JokeViewer, Generator
+
+  error: '',
+  authkey: '',
+
   jokes: [],
   firstName: 'Chuck',
   lastName: 'Norris',

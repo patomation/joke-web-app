@@ -94,28 +94,33 @@ export default connect( (state) => {
         return (
           <section className="c-chuck-norris container">
               <header className="c-header  row">
-                <h1 className="o-h1"> {this.props.firstName} {this.props.lastName} Joke Generator</h1>
+                <h1 className=""> {this.props.firstName} {this.props.lastName} Joke Generator</h1>
 
+                <div className="col-5">
                 <input
-                  className="o-input col-5"
+                  className="o-input"
                   onChange={(e)=>{
                     store.dispatch({
                       type: 'FIRST_NAME_CHANGE',
                       content: e.target.value })
                   }}
                   value={this.props.firstName || ''}></input>
+                </div>
 
+                <div className="col-5">
                 <input
-                  className="o-input col-5"
+                  className="o-input"
                   onChange={(e)=>{
                     store.dispatch({
                       type: 'LAST_NAME_CHANGE',
                       content: e.target.value })
                   }}
                   value={this.props.lastName || ''}></input>
+                </div>
 
+                <div className="col-2">
                 <input
-                  className="o-input col-2"
+                  className="o-input"
                   onChange={(e)=>{
                     store.dispatch({
                       type: 'RESULTS_CHANGE',
@@ -123,8 +128,11 @@ export default connect( (state) => {
                   }}
                   value={this.props.results || 0}
                   type='number'></input>
+                </div>
 
-                <button className="o-button col-12" onClick={this._getJokes.bind(this)}>Get Jokes</button>
+                <div className="col-12">
+                  <button className="o-button col-6" onClick={this._getJokes.bind(this)}>Get Jokes</button>
+                </div>
               </header>
               <main className="o-main">
                 { this._renderList() }

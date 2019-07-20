@@ -16,7 +16,7 @@ export function deleteJokeSuccess(data){
   }
 }
 
-export function deleteJoke(id){
+export function deleteJoke(id, authkey){
   return dispatch => {
     dispatch(deletingJoke());
     fetch( apiHost, {
@@ -26,7 +26,7 @@ export function deleteJoke(id){
       body: JSON.stringify({
         query:
           `mutation {
-            deleteJoke( id: "${id}"
+            deleteJoke( id: "${id}", authkey: "${authkey}"
             ){
                 content
             }

@@ -20,7 +20,7 @@ export default connect( (state) => {
           {({ store }) =>
             <section className="c-joke-editor container">
               <header className="c-header row">
-              <h1 className="o-h1 col-12">Joke Editor</h1>
+              <h1 className=" col-12">Joke Editor</h1>
               </header>
               <textarea
                 value={this.props.content}

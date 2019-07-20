@@ -6,3 +6,6 @@ export * from './updateJoke.js';
 export * from './likeJoke.js';
 export * from './dislikeJoke.js';
 export * from './editJoke.js';
+export * from './register.js';
+export * from './login.js';
+export * from './authkeyLogin.js';
