@@ -1,0 +1,14 @@
+.o-icon-fix {
+  display: inline-block;
+  position: relative;
+  height: 24px;
+  width: 24px;
+}
+.o-icon-fix div{
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+}
+.o-icon-fix i{
+  @include vertical-align();
+}
