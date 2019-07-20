@@ -10,6 +10,13 @@
   margin: 0;
 }
 
-.container{
-  padding: 0;
+//Handle nested containers
+.container .container{
+  padding-left: 0;
+  padding-right: 0;
+
+}
+
+html, body, #root, .c-app{
+  height: 100%;
 }

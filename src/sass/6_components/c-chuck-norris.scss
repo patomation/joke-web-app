@@ -1,8 +1,15 @@
 .c-chuck-norris{
-
+  text-align: center;
 }
 .c-chuck-norris li{
   background-color: rgba(255,255,255,0.025);
   margin-bottom: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.c-chuck-norris input{
+  text-align: center;
+  background-color: rgba(255,255,255,0.025);
+  padding: 0.5rem;
+  width: 100%;
 }

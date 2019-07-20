@@ -19,7 +19,11 @@ $colors: (
   'hover'        : 'DarkSienna',
   'light'        : 'Maize',
   'dark'         : 'Licorice',
+  'warn'         : 'Mandarin',
+  'error'        : 'red',
 
+
+  'border'              : 'Maize',
   'body-bg'             : 'background',
   'body-color'          : 'text',
   'main-bg'             : 'background',
@@ -43,7 +47,7 @@ $colors: (
   'button-hover-color'  : 'light',
   'button-hover-border' : 'border',
 
-  'input-bg'            : 'dark',
+  'input-bg'            : rgba(255,255,255,0.025),
   'input-color'         : 'light',
 
   'cta-button-bg'       : 'link',

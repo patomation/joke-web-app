@@ -1,0 +1,13 @@
+.o-button-secondary{
+  background-color: color('button-color');
+  border: none;
+  color: color('button-bg');
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 12px;
+}
+
+.o-button-secondary:hover{
+  background-color: color('button-bg');
+  color: color('button-color');
+}
