@@ -18,7 +18,7 @@ export default connect( (state) => {
     return (
         <ReactReduxContext.Consumer>
           {({ store }) =>
-            <section className="c-register o-vertical-align container">
+            <section className="col-12 col-md-6 c-register o-vertical-align container">
             <header className="c-header row">
               <h1 className="col-12">Register</h1>
             </header>
@@ -117,6 +117,7 @@ export default connect( (state) => {
                           onClick={(e)=>{
                             e.preventDefault();
                             store.dispatch({type: 'CHANGE_VIEW', view: 'Login'});
+                            store.dispatch({type: 'ERROR_MESSAGE', message: null});
                           }}>
                           Login
                         </button>

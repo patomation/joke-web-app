@@ -9,3 +9,4 @@ export * from './editJoke.js';
 export * from './register.js';
 export * from './login.js';
 export * from './authkeyLogin.js';
+export * from './logOut.js';

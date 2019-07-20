@@ -26,7 +26,8 @@ export function login(values){
           login( email: "${values.email}", password: "${values.password}" ) {
             message
             error
-            authkey
+            authkey,
+            userName
           }
         }`
       })
@@ -37,6 +38,7 @@ export function login(values){
         dispatch({type: 'AUTH_KEY_CHANGE', authkey: result.data.login.authkey});
         dispatch(loginSuccess());
         dispatch({type: 'CHANGE_VIEW', view: 'JokeViewer'});
+        dispatch({type: 'USERNAME_CHANGE', userName: result.data.login.userName});
         return result.data.login;
       } else {
         dispatch({type: 'ERROR_MESSAGE', message: result.data.login.message});

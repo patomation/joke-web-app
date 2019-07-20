@@ -26,7 +26,8 @@ export function authkeyLogin(authkey){
           authkeyLogin( authkey: "${authkey}") {
             message
             error
-            authkey
+            authkey,
+            userName
           }
         }`
       })
@@ -37,6 +38,7 @@ export function authkeyLogin(authkey){
         dispatch({type: 'AUTH_KEY_CHANGE', authkey: result.data.authkeyLogin.authkey});
         dispatch(authkeyLoginSuccess());
         dispatch({type: 'CHANGE_VIEW', view: 'JokeViewer'});
+        dispatch({type: 'USERNAME_CHANGE', userName: result.data.authkeyLogin.userName});
         return result.data.authkeyLogin;
       } else {
         dispatch({type: 'ERROR_MESSAGE', message: result.data.authkeyLogin.message});

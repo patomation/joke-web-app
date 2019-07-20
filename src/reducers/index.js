@@ -9,6 +9,7 @@ import view from './view.js';
 import editId from './editId.js';
 import error from './error.js';
 import authkey from './authkey.js';
+import userName from './userName.js';
 
 
 export default combineReducers({
@@ -20,5 +21,6 @@ export default combineReducers({
   view,
   editId,
   error,
-  authkey
+  authkey,
+  userName
 })

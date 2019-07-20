@@ -1,6 +1,8 @@
 const initialstate = {
   view: 'Loader', //Login, Register, Editor, JokeViewer, Generator
 
+  userName: 'test',
+
   error: '',
   authkey: '',
 

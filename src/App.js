@@ -10,6 +10,7 @@ import JokeViewer from './components/JokeViewer/JokeViewer.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
 import Loader from './components/Loader/Loader.js';
+import User from './components/User/User.js';
 
 export default class App extends React.Component {
   constructor() {
@@ -22,6 +23,7 @@ export default class App extends React.Component {
     return(
       <div className="c-app container">
           <Hide whenViewIs={['Loader', 'Login', 'Register']}>
+            <User />
             <Nav />
           </Hide>
 

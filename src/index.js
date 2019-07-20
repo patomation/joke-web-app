@@ -27,7 +27,7 @@ import {
 
 //Auto login
 let authkey = localStorage.getItem('authkey');
-if(authkey !== null ){
+if(authkey !== null){
   store.dispatch(authkeyLogin(authkey))
 } else {
   store.dispatch({type: 'CHANGE_VIEW', view: 'Register'})

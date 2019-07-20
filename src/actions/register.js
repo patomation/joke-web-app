@@ -31,7 +31,8 @@ export function register(values){
           ) {
             message
             error
-            authkey
+            authkey,
+            userName
           }
         }`
       })
@@ -42,6 +43,7 @@ export function register(values){
         dispatch({type: 'AUTH_KEY_CHANGE', authkey: result.data.register.authkey});
         dispatch(registrationSuccess());
         dispatch({type: 'CHANGE_VIEW', view: 'JokeViewer'});
+        dispatch({type: 'USERNAME_CHANGE', userName: result.data.register.userName});
         return result.data.register;
       } else {
         dispatch({type: 'ERROR_MESSAGE', message: result.data.register.message});
