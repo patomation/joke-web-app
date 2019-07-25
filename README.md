@@ -23,7 +23,7 @@ Have fun tinkering
 ## Publishing
 1. Set now mongodb_url_jokes secret
 ```
-now secret mongodb_url_jokes "mongodb+srv://{{username}}:{{password}}@{{cluster}}.mongodb.net/{{appname}}?retryWrites=true&w=majority"
+now secrets add mongodb_url_jokes "mongodb+srv://{{username}}:{{password}}@{{cluster}}.mongodb.net/{{appname}}?retryWrites=true&w=majority"
 ```
 2. Change apiHost url in ```src/apiHost.json``` to your now {{username}}.
 ```
