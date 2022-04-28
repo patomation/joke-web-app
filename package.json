@@ -30,7 +30,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^4.1.1",
-    "cross-fetch": "^3.0.4",
+    "cross-fetch": "^3.1.5",
     "css-loader": "^2.1.1",
     "es2015": "0.0.0",
     "file-loader": "^3.0.1",
